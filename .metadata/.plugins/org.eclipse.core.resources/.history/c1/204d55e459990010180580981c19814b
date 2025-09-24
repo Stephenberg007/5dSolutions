@@ -1,0 +1,37 @@
+package com.eis.in.Service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.eis.in.Entity.Address;
+import com.eis.in.Entity.Employee;
+import com.eis.in.Repo.AddressRepo;
+import com.eis.in.Repo.EmployeeRepo;
+
+@Service
+public class AddrService {
+	
+	@Autowired
+	AddressRepo addrRepo;
+	
+	@Autowired
+	EmployeeRepo empRepo;
+	
+	public boolean addAddress(Integer empId, Address address) {
+		if( empId!=null && address != null) {
+			Optional<Employee> byId = empRepo.findById(empId);
+				if(byId.isPresent()) {
+					Employee employee = byId.get();
+					address.setEmployee(employee);
+					Address addr = addrRepo.save(address);
+					return addr.getAddrId()!=null;
+				}
+		}else {
+			return false;
+		}return false;
+		
+	}
+
+}

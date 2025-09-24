@@ -1,0 +1,22 @@
+package com.eis.in.Service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.eis.in.Entity.Employee;
+import com.eis.in.Repo.EmployeeRepo;
+
+@Service
+public class EmpService {
+	
+	@Autowired
+	EmployeeRepo empRepo;
+	
+	public boolean addEmployee(Employee emp) {
+		if(emp!=null) {
+			Employee empl = empRepo.save(emp);
+			return empl.getEmpId()!=null;
+		}
+	}
+
+}
