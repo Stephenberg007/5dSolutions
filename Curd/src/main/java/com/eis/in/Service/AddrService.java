@@ -24,7 +24,7 @@ public class AddrService {
 			Optional<Employee> byId = empRepo.findById(empId);
 				if(byId.isPresent()) {
 					Employee employee = byId.get();
-					address.setEmployee(employee);
+					//address.setEmployee(employee);
 					Address addr = addrRepo.save(address);
 					return addr.getAddrId()!=null;
 				}
